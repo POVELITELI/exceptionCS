@@ -1,0 +1,48 @@
+try
+{
+    // Verificam daca numele de utilizator este introdus
+    if (string.IsNullOrEmpty(txtUsername.Text))
+    {
+        throw new ArgumentNullException("Numele de utilizator este obligatoriu.");
+    }
+
+    // Verificam daca parola este introdusa
+    if (string.IsNullOrEmpty(txtPassword.Text))
+    {
+        throw new ArgumentNullException("Parola este obligatorie.");
+    }
+
+    // Verificam daca numele de utilizator contine caractere invalide
+    if (txtUsername.Text.Contains(";") || txtUsername.Text.Contains("'"))
+    {
+        throw new ArgumentException("Numele de utilizator contine caractere invalide.");
+    }
+
+    // Verificam daca parola are cel putin 6 caractere
+    if (txtPassword.Text.Length < 6)
+    {
+        throw new ArgumentException("Parola trebuie sa contina cel putin 6 caractere.");
+    }
+
+    // Inregistrarea in baza de date
+    RegisterUser(txtUsername.Text, txtPassword.Text);
+}
+catch (ArgumentNullException ex)
+{
+    MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+}
+catch (ArgumentException ex)
+{
+    MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+}
+catch (InvalidOperationException ex)
+{
+    MessageBox.Show(ex.Message, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+}
+catch (FormatException ex)
+{
+    MessageBox.Show("Parola introdusa este invalida. Parola trebuie sa contina cel putin o litera mare, o litera mica, un numar si un caracter special.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+}
+catch (SqlException ex)
+{
+    MessageBox.Show("Nu se poate stabili o conexiune cu serverul de baze de date. Verificați conexiunea la internet și încercați din nou mai târziu.", "Eroare", MessageBoxButtons.OK,
