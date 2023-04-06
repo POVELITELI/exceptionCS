@@ -1,0 +1,34 @@
+try
+{
+    // Codul care poate arunca o excepție este plasat aici
+}
+catch (ArgumentNullException ex)
+{
+    // Tratarea excepției de tip ArgumentNullException
+    Console.WriteLine("Unul dintre parametrii nu a fost specificat.");
+}
+catch (ArgumentException ex)
+{
+    // Tratarea excepției de tip ArgumentException
+    Console.WriteLine("Numele de utilizator sau parola este incorectă.");
+}
+catch (AuthenticationException ex)
+{
+    // Tratarea excepției de tip AuthenticationException
+    Console.WriteLine("Autentificarea utilizatorului a eșuat.");
+}
+catch (CommunicationException ex)
+{
+    // Tratarea excepției de tip CommunicationException
+    Console.WriteLine("Nu se poate stabili o conexiune cu serverul.");
+}
+catch (Exception ex)
+{
+    // Tratarea oricărei alte excepții care nu au fost prinsă anterior
+    Console.WriteLine("O eroare neașteptată a apărut: " + ex.Message);
+}
+finally
+{
+    // Codul din blocul finally este executat întotdeauna, indiferent dacă se produce o excepție sau nu
+    Console.WriteLine("Operațiunea de autentificare a fost finalizată.");
+}
